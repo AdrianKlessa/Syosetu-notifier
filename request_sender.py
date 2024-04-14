@@ -1,5 +1,4 @@
 import requests
-import json
 
 main_url = "https://api.syosetu.com/novelapi/api/"
 
