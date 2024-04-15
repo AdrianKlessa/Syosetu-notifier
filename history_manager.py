@@ -14,7 +14,9 @@ def check_create_history_file():
             pass  # do nothing
     except FileNotFoundError:
         with open(HISTORY_FILE_NAME, 'a+') as f:
-            json.dump(dict(), f, ensure_ascii=False, indent=4)
+            history_dict = dict()
+            history_dict["last_history_update_utc"] = datetime.datetime.min #Since we're creating a new file we want to check the novel info ASAP
+            json.dump(history_dict, f, ensure_ascii=False, indent=4)
 
 
 def check_add_novel(novel_id, retrieved_info):
@@ -41,8 +43,6 @@ def check_add_novel(novel_id, retrieved_info):
 
     except FileNotFoundError:
         notification_pusher.history_file_not_found_notification()
-    finally:
-        pass
 
 
 def compare_data(old_novel_data, new_novel_data):
@@ -57,3 +57,11 @@ def compare_data(old_novel_data, new_novel_data):
         notification_pusher.new_chapter_notification()
     elif new_novelupdated_at > old_novelupdated_at:
         notification_pusher.novel_modified_notification()
+
+def get_last_history_updated_utc():
+    try:
+        with open(HISTORY_FILE_NAME, 'r') as f:
+            history_data = json.load(f, encoding='utf-8')
+            return history_data["last_history_update_utc"]
+    except FileNotFoundError:
+        notification_pusher.history_file_not_found_notification()
