@@ -15,8 +15,6 @@ def check_create_history_file():
     except FileNotFoundError:
         with open(HISTORY_FILE_NAME, 'a+') as f:
             json.dump(dict(), f, ensure_ascii=False, indent=4)
-    finally:
-        pass
 
 
 def check_add_novel(novel_id, retrieved_info):
