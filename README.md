@@ -11,3 +11,5 @@ Notes:
 - Syosetu has a request limit of 80k requests OR 400MB data transfer per day
 - The limit is based on the IP address of the request origination, there is no user/password or token authentication in the API
 - I plan to limit the update checks to 1~2 times per day and add some sanity checks for update checks to make sure the application does not cross the limit
+
+Icons used in /res directory are from https://iconoir.com/ . The relevant copyright and permission notice is included in that directory.
