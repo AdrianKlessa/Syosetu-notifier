@@ -25,7 +25,6 @@ def check_add_novel(novel_id, retrieved_info):
     :return: None
     """
     try:
-        # If file exists don't create it again
         with open(HISTORY_FILE_NAME, 'r') as f:
             pass  # File exists, we're good
         with open(HISTORY_FILE_NAME, 'w+') as f:
