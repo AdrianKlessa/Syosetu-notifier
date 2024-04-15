@@ -10,13 +10,19 @@ HISTORY_FILE_NAME = "history.json"
 def check_create_history_file():
     try:
         # If file exists don't create it again
-        with open(HISTORY_FILE_NAME, 'r') as f:
+        with open(HISTORY_FILE_NAME, 'r', encoding='utf-8') as f:
             pass  # do nothing
     except FileNotFoundError:
-        with open(HISTORY_FILE_NAME, 'a+') as f:
-            history_dict = dict()
-            history_dict["last_history_update_utc"] = datetime.datetime.min #Since we're creating a new file we want to check the novel info ASAP
-            json.dump(history_dict, f, ensure_ascii=False, indent=4)
+        create_history_file()
+
+
+def create_history_file():
+    with open(HISTORY_FILE_NAME, 'w+', encoding='utf-8') as f:
+        print("Creating file")
+        history_dict = {"last_history_update_utc": str(
+            datetime.datetime.min), "test": "test"}
+        print(history_dict)
+        json.dump(history_dict, f, ensure_ascii=False, indent=4, default=str)
 
 
 def check_add_novel(novel_id, retrieved_info):
@@ -27,10 +33,8 @@ def check_add_novel(novel_id, retrieved_info):
     :return: None
     """
     try:
-        with open(HISTORY_FILE_NAME, 'r') as f:
-            pass  # File exists, we're good
-        with open(HISTORY_FILE_NAME, 'w+') as f:
-            history_data = json.load(f, encoding='utf-8')
+        with open(HISTORY_FILE_NAME, 'r', encoding='utf-8') as f:
+            history_data = json.load(f)
             if novel_id not in history_data:
                 history_data[novel_id] = retrieved_info
                 notification_pusher.novel_modified_notification()
@@ -38,8 +42,9 @@ def check_add_novel(novel_id, retrieved_info):
                 old_novel_information = history_data[novel_id]
                 compare_data(old_novel_information, retrieved_info)
                 history_data[novel_id] = retrieved_info
-            history_data["last_history_update_utc"] = datetime.datetime.now(datetime.timezone.utc)
-            json.dump(history_data, f, ensure_ascii=False, indent=4)
+            history_data["last_history_update_utc"] = str(datetime.datetime.now(datetime.timezone.utc))
+        with open(HISTORY_FILE_NAME, 'w+', encoding='utf-8') as f:
+            json.dump(history_data, f, ensure_ascii=False, indent=4, default=str)
 
     except FileNotFoundError:
         notification_pusher.history_file_not_found_notification()
@@ -58,9 +63,10 @@ def compare_data(old_novel_data, new_novel_data):
     elif new_novelupdated_at > old_novelupdated_at:
         notification_pusher.novel_modified_notification()
 
+
 def get_last_history_updated_utc():
     try:
-        with open(HISTORY_FILE_NAME, 'r') as f:
+        with open(HISTORY_FILE_NAME, 'r', encoding='utf-8') as f:
             history_data = json.load(f, encoding='utf-8')
             return history_data["last_history_update_utc"]
     except FileNotFoundError:
