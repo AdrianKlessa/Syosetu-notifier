@@ -9,6 +9,7 @@ def read_config():
     config = dict()
     config["sleep_time"] = int(config_file["Scheduler"]["SleepTime"])
     config["verbose"] = config_file["Scheduler"].getboolean("Verbose")
+    # join/split to support spaces between novel codes
     config["followed_novels"] = ''.join(config_file["Novels"]["FollowedNovels"].split()).split(',')
     return config
 
