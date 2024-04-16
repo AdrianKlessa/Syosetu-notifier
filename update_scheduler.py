@@ -1,4 +1,5 @@
 # TODO: Implement config file
+# TODO: Add a "verbose" debug option to notify when getting updates even if no novel was updated
 def get_update_schedule():
     pass
 

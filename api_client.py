@@ -14,8 +14,8 @@ print("-".join([test_id1]))
 print("-".join([test_id1, test_id2]))
 print("-".join([test_id1, test_id2, test_id3]))
 
-
-# Response content for one example request (one novel) info was 573KB
+# TODO: Limit get parameters to author / title / ncode / dates
+# Response content for one full example request (one novel) info was 573KB
 def get_novels_info(novel_id_list):
     """
 
