@@ -16,28 +16,6 @@ print("-".join([test_id1, test_id2, test_id3]))
 
 # Response content for one full example request (one novel) info was 573KB
 # Down to 88 KB when limiting response parameters
-def get_novels_info(novel_id_list,limit_parameters=True):
-    """
-    :param limit_parameters: If True, limits request to only ask for the fields needed by the application
-    :param novel_id_list: List of strings defining the novel ncodes
-    :return: yaml-formatted text and boolean indicating if the request was successful
-    """
-    novels_string = "-".join(
-        novel_id_list)  # Novel ids are joined by "-" in the api (e.g. /api/?ncode=n0001a-n1111b-n9999d)
-    if not limit_parameters:
-        response = requests.get(main_url, params={"ncode": novels_string})
-    else:
-        # title, ncode, writer, general_firstup, general_lastup, novelupdated_at
-        of_parameter = "-".join(["t", "n", "w", "gf", "gl", "nu"])
-        response = requests.get(main_url, params={"ncode": novels_string, "of": of_parameter})
-    if response.status_code == 200:
-        response_data = response.text
-        success = True
-    else:
-        response_data = None
-        success = False
-    return (response_data, success)
-
 
 def get_novels_info_dict(novel_id_list,limit_parameters=True):
     # TODO: Correct the error handling for timeouts etc. https://stackoverflow.com/questions/16511337/correct-way-to-try-except-using-python-requests-module
