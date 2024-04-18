@@ -33,6 +33,6 @@ def custom_error_notification(title, msg):
     toast = Notification(app_id=app_id,
                          title=title,
                          msg=msg,
-                         icon=os.path.abspath("res/bookmark-book.png"))
+                         icon=os.path.abspath("res/cloud-xmark.png"))
     toast.set_audio(audio.Default, loop=False)
     toast.show()
