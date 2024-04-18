@@ -26,12 +26,14 @@ def get_novels_info_dict(novel_id_list,limit_parameters=True):
     """
     novels_string = "-".join(
         novel_id_list)  # Novel ids are joined by "-" in the api (e.g. /api/?ncode=n0001a-n1111b-n9999d)
-    if not limit_parameters:
-        response = requests.get(main_url, params={"ncode": novels_string})
-    else:
+
+    request_params = {"ncode": novels_string}
+    if limit_parameters:
         # title, ncode, writer, general_firstup, general_lastup, novelupdated_at
         of_parameter = "-".join(["t", "n", "w", "gf", "gl", "nu"])
-        response = requests.get(main_url, params={"ncode": novels_string, "of": of_parameter})
+        request_params["of"]=of_parameter
+
+    response = requests.get(main_url, params=request_params)
     if response.status_code == 200:
         python_dict_response = yaml.load(response.text, Loader=yaml.BaseLoader)
         success = True
