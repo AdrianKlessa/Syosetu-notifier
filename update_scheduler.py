@@ -22,6 +22,7 @@ def get_followed_novels():
 def main_update_loop():
     # TODO: Sanity check using the data in history file and current time here
     # TODO: In a while loop get the followed novels from file, get updates and then wait the configured amount of time
+    # TODO: Check the status returned by api_client
     pass
 
 
