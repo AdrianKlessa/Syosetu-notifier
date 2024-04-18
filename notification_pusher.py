@@ -3,6 +3,7 @@ import os
 
 app_id = "Syosetu notifier"
 # TODO: Pass novel information (name, title) to notifications
+# TODO: On-click to link to the novel website?
 def new_chapter_notification():
     toast = Notification(app_id=app_id,
                          title="New chapter for novel!",
