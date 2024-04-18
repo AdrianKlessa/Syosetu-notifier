@@ -25,7 +25,7 @@ def history_file_not_found_notification():
     toast = Notification(app_id=app_id,
                          title="History file missing!",
                          msg="History file could not be found despite previously being defined",
-                         icon=os.path.abspath("res/bookmark-book.png"))
+                         icon=os.path.abspath("res/file-not-found.png"))
     toast.set_audio(audio.Default, loop=False)
     toast.show()
 
