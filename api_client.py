@@ -19,7 +19,6 @@ print("-".join([test_id1, test_id2, test_id3]))
 # Down to 88 KB when limiting response parameters
 
 def get_novels_info_dict(novel_id_list,limit_parameters=True):
-    # TODO: Correct the error handling for timeouts etc. https://stackoverflow.com/questions/16511337/correct-way-to-try-except-using-python-requests-module
     """
     :param limit_parameters: If True, limits request to only ask for the fields needed by the application
     :param novel_id_list: List of strings defining the novel ncodes
