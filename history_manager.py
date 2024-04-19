@@ -20,7 +20,7 @@ def create_history_file():
     with open(HISTORY_FILE_NAME, 'w+', encoding='utf-8') as f:
         print("Creating file")
         history_dict = {"last_history_update_utc": str(
-            datetime.datetime.min), "test": "test"}
+            datetime.datetime.min)}
         print(history_dict)
         json.dump(history_dict, f, ensure_ascii=False, indent=4, default=str)
 
