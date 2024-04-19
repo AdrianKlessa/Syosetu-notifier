@@ -25,13 +25,14 @@ def create_history_file():
         json.dump(history_dict, f, ensure_ascii=False, indent=4, default=str)
 
 
-def check_add_novel(novel_id, retrieved_info):
+def check_add_novel(retrieved_info):
     """
     Check history file to compare new novel data with old
     :param novel_id: ncode of the novel to check in the history file
     :param retrieved_info: newly retrieved info of the novel to compare with
     :return: None
     """
+    novel_id = retrieved_info["ncode"]
     try:
         with open(HISTORY_FILE_NAME, 'r', encoding='utf-8') as f:
             history_data = json.load(f)
@@ -67,7 +68,18 @@ def compare_data(old_novel_data, new_novel_data):
 def get_last_history_updated_utc():
     try:
         with open(HISTORY_FILE_NAME, 'r', encoding='utf-8') as f:
-            history_data = json.load(f, encoding='utf-8')
+            history_data = json.load(f)
             return history_data["last_history_update_utc"]
     except FileNotFoundError:
         notification_pusher.history_file_not_found_notification()
+
+
+def can_update_already():
+    last_update_time = get_last_history_updated_utc()
+    print(last_update_time)
+    last_update_time = datetime.datetime.strptime(last_update_time, '%Y-%m-%d %H:%M:%S.%f%z')
+    current_time = datetime.datetime.now(datetime.timezone.utc)
+    time_difference = current_time - last_update_time
+    if time_difference.total_seconds() > 1800:
+        return True
+    return False
