@@ -80,6 +80,7 @@ def can_update_already():
     last_update_time = datetime.datetime.strptime(last_update_time, '%Y-%m-%d %H:%M:%S.%f%z')
     current_time = datetime.datetime.now(datetime.timezone.utc)
     time_difference = current_time - last_update_time
+    # Arbitrarily chose half-hour time difference
     if time_difference.total_seconds() > 1800:
         return True
     return False
