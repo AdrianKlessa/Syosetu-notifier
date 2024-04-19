@@ -5,7 +5,7 @@ from dateutil.parser import parse
 import notification_pusher
 
 HISTORY_FILE_NAME = "history.json"
-
+MINIMUM_UPDATE_INTERVAL = 1800
 
 def check_create_history_file():
     try:
@@ -75,12 +75,17 @@ def get_last_history_updated_utc():
 
 
 def can_update_already():
+    """
+    Checks if the time elapsed from last update is bigger than MINIMUM_UPDATE_INTERVAL.
+    Designed as an additional check to prevent sending requests to Syosetu API too often.
+    :return: True if time from last update is bigger than the set global (in seconds), False otherwise
+    """
     last_update_time = get_last_history_updated_utc()
     print(last_update_time)
     last_update_time = datetime.datetime.strptime(last_update_time, '%Y-%m-%d %H:%M:%S.%f%z')
     current_time = datetime.datetime.now(datetime.timezone.utc)
     time_difference = current_time - last_update_time
     # Arbitrarily chose half-hour time difference
-    if time_difference.total_seconds() > 1800:
+    if time_difference.total_seconds() > MINIMUM_UPDATE_INTERVAL:
         return True
     return False
