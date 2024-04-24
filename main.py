@@ -1,3 +1,4 @@
-# Press the green button in the gutter to run the script.
+import update_scheduler
+
 if __name__ == '__main__':
-    print("Hello world!")
+    update_scheduler.main_update_loop()

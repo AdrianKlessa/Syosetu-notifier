@@ -2,6 +2,8 @@ from winotify import Notification, audio
 import os
 
 app_id = "Syosetu notifier"
+
+
 # TODO: Pass novel information (name, title) to notifications
 # TODO: On-click to link to the novel website?
 def new_chapter_notification():
@@ -30,6 +32,7 @@ def history_file_not_found_notification():
     toast.set_audio(audio.Default, loop=False)
     toast.show()
 
+
 def config_file_not_found_notification():
     toast = Notification(app_id=app_id,
                          title="Config file missing or corrupted",
@@ -38,10 +41,20 @@ def config_file_not_found_notification():
     toast.set_audio(audio.Default, loop=False)
     toast.show()
 
+
 def custom_error_notification(title, msg):
     toast = Notification(app_id=app_id,
                          title=title,
                          msg=msg,
                          icon=os.path.abspath("res/cloud-xmark.png"))
+    toast.set_audio(audio.Default, loop=False)
+    toast.show()
+
+
+def no_updates_notification():
+    toast = Notification(app_id=app_id,
+                         title="No novel updates found",
+                         msg="No new novel information found during scheduled syosetu API check",
+                         icon=os.path.abspath("res/bookmark-book.png"))
     toast.set_audio(audio.Default, loop=False)
     toast.show()

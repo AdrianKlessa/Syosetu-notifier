@@ -1,12 +1,15 @@
 import configparser
-
+import time
+import api_client
 import notification_pusher
+import history_manager
 
 DEFAULT_SLEEP = 3600
 DEFAULT_VERBOSE = False
 DEFAULT_FOLLOWED_NOVELS = []
 
-# TODO: Utilize the "verbose" debug option to notify when getting updates even if no novel was updated
+# TODO: Add config to ignore novel modifications (non-new-chapter)
+# TODO: Move config management to a different file and use that above
 
 def read_config():
     config_file = configparser.ConfigParser()
@@ -29,16 +32,22 @@ def read_config():
     return config
 
 
-def get_followed_novels():
-    # TODO: For each from followed novels use api_client
-    pass
-
-
 def main_update_loop():
-    # TODO: Sanity check using the data in history file and current time here
-    # TODO: In a while loop get the followed novels from file, get updates and then wait the configured amount of time
-    # TODO: Check the status returned by api_client
-    pass
+    history_manager.check_create_history_file()
+    while True:
+        config = read_config()
+        updated_number = 0
 
+        # Don't like the number of ifs here but don't see a good way to refactor ATM
+        if history_manager.can_update_already():
+            new_novel_info, success = api_client.get_novels_info_dict(config["followed_novels"])
+            if success:
+                novels_list = new_novel_info[1:]
+                for novel in novels_list:
+                    updated = history_manager.check_add_novel(novel)
+                    if updated:
+                        updated_number += 1
+                if updated_number == 0 and config["verbose"]:
+                    notification_pusher.no_updates_notification()
+        time.sleep(config["sleep_time"])
 
-print(read_config())
