@@ -3,6 +3,7 @@ import json
 from dateutil.parser import parse
 
 import notification_pusher
+import update_scheduler
 
 HISTORY_FILE_NAME = "history.json"
 MINIMUM_UPDATE_INTERVAL = 1800
@@ -69,8 +70,10 @@ def compare_data(old_novel_data, new_novel_data):
         notification_pusher.new_chapter_notification()
         updated = True
     elif new_novelupdated_at > old_novelupdated_at:
-        notification_pusher.novel_modified_notification()
-        updated = True
+        config = update_scheduler.read_config()
+        if config["novel_modified_notifications"]:
+            notification_pusher.novel_modified_notification()
+            updated = True
     return updated
 
 
