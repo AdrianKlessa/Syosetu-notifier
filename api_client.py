@@ -4,17 +4,6 @@ import notification_pusher
 
 main_url = "https://api.syosetu.com/novelapi/api/"
 
-mitsuba_monogatari_id = "n0388ee"
-
-test_id1 = "n0001a"
-test_id2 = "n1111b"
-test_id3 = "n9999d"
-
-print("-".join([test_id1]))
-
-print("-".join([test_id1, test_id2]))
-print("-".join([test_id1, test_id2, test_id3]))
-
 
 # Response content for one full example request (one novel) info was 573KB
 # Down to 88 KB when limiting response parameters
@@ -55,4 +44,3 @@ def get_novels_info_dict(novel_id_list, limit_parameters=True):
         success = False
         notification_pusher.custom_error_notification("Error encountered while getting novel info!", repr(e))
     return python_dict_response, success
-

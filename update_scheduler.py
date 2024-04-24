@@ -10,8 +10,6 @@ DEFAULT_FOLLOWED_NOVELS = []
 DEFAULT_MODIFIED_NOTIFICATION = False
 
 
-# TODO: Add config to ignore novel modifications (non-new-chapter)
-
 def read_config():
     config_file = configparser.ConfigParser()
     config_file.read('config.ini')
@@ -54,4 +52,3 @@ def main_update_loop():
                 if updated_number == 0 and config["verbose"]:
                     notification_pusher.no_updates_notification()
         time.sleep(config["sleep_time"])
-
