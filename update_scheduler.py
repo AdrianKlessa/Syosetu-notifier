@@ -7,9 +7,10 @@ import history_manager
 DEFAULT_SLEEP = 3600
 DEFAULT_VERBOSE = False
 DEFAULT_FOLLOWED_NOVELS = []
+DEFAULT_MODIFIED_NOTIFICATION = False
+
 
 # TODO: Add config to ignore novel modifications (non-new-chapter)
-# TODO: Move config management to a different file and use that above
 
 def read_config():
     config_file = configparser.ConfigParser()
@@ -18,9 +19,11 @@ def read_config():
     try:
         config["sleep_time"] = int(config_file["Scheduler"]["SleepTime"])
         config["verbose"] = config_file["Scheduler"].getboolean("Verbose")
+        config["novel_modified_notifications"] = config_file["Notifications"].getboolean("NovelModifiedNotifications")
         # join/split to support spaces between novel codes
         config["followed_novels"] = ''.join(config_file["Novels"]["FollowedNovels"].split()).split(',')
-        if config["sleep_time"] is None or config["verbose"] is None or config["followed_novels"] is None:
+        if config["sleep_time"] is None or config["verbose"] is None or config["followed_novels"] is None or config[
+            "novel_modified_notifications"] is None:
             raise ValueError("Missing value in config file")
         if not all(isinstance(item, str) for item in config["followed_novels"]):
             raise ValueError("Failed to parse novel ncodes")
@@ -29,6 +32,7 @@ def read_config():
         config["sleep_time"] = DEFAULT_SLEEP
         config["verbose"] = DEFAULT_VERBOSE
         config["followed_novels"] = DEFAULT_FOLLOWED_NOVELS
+        config["novel_modified_notifications"] = DEFAULT_MODIFIED_NOTIFICATION
     return config
 
 
