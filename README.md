@@ -1,3 +1,5 @@
+## WIP: To add explanation of config file and how to run in background
+
 Shousetsuka ni Narou is a Japanese-language website where authors publically upload their works. Many of the works originating from this website have later been published as physical books and then adapted into anime.
 
 While the website has functionality for informing the user about novel updates, one has to log in and check their main user page to do so. There is no functionality for sending email notifications, or a webhook.
