@@ -19,8 +19,9 @@ def check_create_history_file():
 def create_history_file():
     with open(HISTORY_FILE_NAME, 'w+', encoding='utf-8') as f:
         print("Creating file")
-        history_dict = {"last_history_update_utc": str(
-            datetime.datetime.min)}
+        datetime_min = datetime.datetime.min
+        datetime_min = datetime_min.replace(tzinfo=datetime.timezone.utc)
+        history_dict = {"last_history_update_utc": datetime_min.strftime("%Y-%m-%d %H:%M:%S.%f%z")}
         print(history_dict)
         json.dump(history_dict, f, ensure_ascii=False, indent=4, default=str)
 
