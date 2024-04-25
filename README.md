@@ -6,6 +6,10 @@ This application is a lightweight python app that can run in the background and 
 
 The website's API is described here: https://dev.syosetu.com/man/api/
 
+### Notifications example:
+
+![notifications_example_screenshot](docs/notification_example.png)
+
 ### Requirements (tested version in parenthesis)
 
 * Windows 10 - might work on 11 but untested
