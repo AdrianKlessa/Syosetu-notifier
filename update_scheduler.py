@@ -3,16 +3,17 @@ import time
 import api_client
 import notification_pusher
 import history_manager
+from pathlib import Path
 
 DEFAULT_SLEEP = 3600
 DEFAULT_VERBOSE = False
 DEFAULT_FOLLOWED_NOVELS = []
 DEFAULT_MODIFIED_NOTIFICATION = False
-
+CONFIG_FILE_NAME = Path(__file__).with_name("config.ini").absolute()
 
 def read_config():
     config_file = configparser.ConfigParser()
-    config_file.read('config.ini')
+    config_file.read(CONFIG_FILE_NAME)
     config = dict()
     try:
         config["sleep_time"] = int(config_file["Scheduler"]["SleepTime"])
