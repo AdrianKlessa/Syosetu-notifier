@@ -10,6 +10,12 @@ main_url = "https://api.syosetu.com/novelapi/api/"
 
 def get_novels_info_dict(novel_id_list, limit_parameters=True):
     """
+    Gets information about the provided novels from Syosetu API. Notes about the datetimes retrieved:
+
+    novelupdated_at is relevant to all modifications for the novel (typo corrections etc.)
+    general_firstup is when the novel was first uploaded / added to syosetu
+    general_lastup is updated when a new chapter is added, but NOT when modifications are made to existing chapters
+
     :param limit_parameters: If True, limits request to only ask for the fields needed by the application
     :param novel_id_list: List of strings defining the novel ncodes
     :return: python dictionary with novel information and boolean indicating if the request was successful
