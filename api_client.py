@@ -26,7 +26,7 @@ def get_novels_info_dict(novel_id_list, limit_parameters=True):
         print("Getting novel info from Syosetu API...")
         response = requests.get(main_url, params=request_params)
         if response.status_code == 200:
-            python_dict_response = yaml.load(response.text, Loader=yaml.BaseLoader)
+            python_dict_response = yaml.safe_load(response.text)
             success = True
         else:
             python_dict_response = None
