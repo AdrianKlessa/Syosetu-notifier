@@ -14,7 +14,7 @@ The website's API is described here: https://dev.syosetu.com/man/api/
 * python-dateutil (2.8.2)
 
 
-### Installation isnstructions
+### Installation instructions
 
 1. Have python and the dependencies listed above installed
 2. Clone this repository into a location where you want to store this app.
