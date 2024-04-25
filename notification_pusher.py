@@ -3,23 +3,30 @@ import os
 
 app_id = "Syosetu notifier"
 
+novels_url = "https://ncode.syosetu.com/"
 
 # TODO: On-click to link to the novel website?
-def new_chapter_notification(author, title):
+def new_chapter_notification(author, title, ncode):
     toast = Notification(app_id=app_id,
                          title=f"New chapter for {title} released",
                          msg=f"{author} has added a new chapter for {title}",
                          icon=os.path.abspath("res/bookmark-book.png"))
     toast.set_audio(audio.Default, loop=False)
+    # Using uppercase n-codes in URL results in a redirect page despite that format being used by the API
+    toast.add_actions(label="Go to novel's homepage",
+                      launch=f"https://ncode.syosetu.com/{ncode.lower()}/")
     toast.show()
 
 
-def novel_modified_notification(author, title):
+def novel_modified_notification(author, title, ncode):
     toast = Notification(app_id=app_id,
                          title=f"{title} was modified",
                          msg=f"{author} has made modifications to {title}",
                          icon=os.path.abspath("res/bookmark-book.png"))
     toast.set_audio(audio.Default, loop=False)
+    # Using uppercase n-codes in URL results in a redirect page despite that format being used by the API
+    toast.add_actions(label="Go to novel's homepage",
+                      launch=f"https://ncode.syosetu.com/{ncode.lower()}/")
     toast.show()
 
 
