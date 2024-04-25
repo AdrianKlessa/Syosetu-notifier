@@ -20,6 +20,9 @@ def get_novels_info_dict(novel_id_list, limit_parameters=True):
     :param novel_id_list: List of strings defining the novel ncodes
     :return: python dictionary with novel information and boolean indicating if the request was successful
     """
+    if len(novel_id_list) == 0:
+        return None, False
+
     novels_string = "-".join(
         novel_id_list)  # Novel ids are joined by "-" in the api (e.g. /api/?ncode=n0001a-n1111b-n9999d)
 
