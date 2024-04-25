@@ -4,8 +4,10 @@ from dateutil.parser import parse
 
 import notification_pusher
 import update_scheduler
+from pathlib import Path
 
-HISTORY_FILE_NAME = "history.json"
+
+HISTORY_FILE_NAME = Path(__file__).with_name("history.json").absolute()
 MINIMUM_UPDATE_INTERVAL = 1800
 
 
