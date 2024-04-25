@@ -62,10 +62,10 @@ def check_add_novel(retrieved_info):
 def compare_data(old_novel_data, new_novel_data):
     # Convert both from str to datetime and compare
     old_novelupdated_at = parse(old_novel_data["novelupdated_at"])
-    new_novelupdated_at = parse(new_novel_data["novelupdated_at"])
+    new_novelupdated_at = new_novel_data["novelupdated_at"]
 
     old_general_lastup = parse(old_novel_data["general_lastup"])
-    new_general_lastup = parse(new_novel_data["general_lastup"])
+    new_general_lastup = new_novel_data["general_lastup"]
 
     updated = False
     if new_general_lastup > old_general_lastup:
