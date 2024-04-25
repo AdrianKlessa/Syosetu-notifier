@@ -42,7 +42,7 @@ def check_add_novel(retrieved_info):
             history_data = json.load(f)
             if novel_id not in history_data:
                 history_data[novel_id] = retrieved_info
-                notification_pusher.novel_modified_notification()
+                notification_pusher.novel_modified_notification(retrieved_info["writer"], retrieved_info["title"])
             else:
                 old_novel_information = history_data[novel_id]
                 updated = compare_data(old_novel_information, retrieved_info)
@@ -67,12 +67,12 @@ def compare_data(old_novel_data, new_novel_data):
 
     updated = False
     if new_general_lastup > old_general_lastup:
-        notification_pusher.new_chapter_notification()
+        notification_pusher.new_chapter_notification(new_novel_data["writer"], new_novel_data["title"])
         updated = True
     elif new_novelupdated_at > old_novelupdated_at:
         config = update_scheduler.read_config()
         if config["novel_modified_notifications"]:
-            notification_pusher.novel_modified_notification()
+            notification_pusher.novel_modified_notification(new_novel_data["writer"], new_novel_data["title"])
             updated = True
     return updated
 

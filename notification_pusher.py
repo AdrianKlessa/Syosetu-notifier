@@ -4,21 +4,20 @@ import os
 app_id = "Syosetu notifier"
 
 
-# TODO: Pass novel information (name, title) to notifications
 # TODO: On-click to link to the novel website?
-def new_chapter_notification():
+def new_chapter_notification(author, title):
     toast = Notification(app_id=app_id,
-                         title="New chapter for novel!",
-                         msg="New chapter for novel!",
+                         title=f"New chapter for {title} released",
+                         msg=f"{author} has added a new chapter for {title}",
                          icon=os.path.abspath("res/bookmark-book.png"))
     toast.set_audio(audio.Default, loop=False)
     toast.show()
 
 
-def novel_modified_notification():
+def novel_modified_notification(author, title):
     toast = Notification(app_id=app_id,
-                         title="Novel chapter modified!",
-                         msg="Novel chapter modified!",
+                         title=f"{title} was modified",
+                         msg=f"{author} has made modifications to {title}",
                          icon=os.path.abspath("res/bookmark-book.png"))
     toast.set_audio(audio.Default, loop=False)
     toast.show()
