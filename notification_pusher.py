@@ -22,7 +22,7 @@ def novel_modified_notification(author, title, ncode):
     toast = Notification(app_id=app_id,
                          title=f"{title} was modified",
                          msg=f"{author} has made modifications to {title}",
-                         icon=os.path.abspath("res/bookmark-book.png"))
+                         icon=os.path.abspath("res/edit-pencil.png"))
     toast.set_audio(audio.Default, loop=False)
     # Using uppercase n-codes in URL results in a redirect page despite that format being used by the API
     toast.add_actions(label="Go to novel's homepage",
