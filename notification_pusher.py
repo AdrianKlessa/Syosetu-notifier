@@ -5,7 +5,7 @@ app_id = "Syosetu notifier"
 
 novels_url = "https://ncode.syosetu.com/"
 
-# TODO: On-click to link to the novel website?
+
 def new_chapter_notification(author, title, ncode):
     toast = Notification(app_id=app_id,
                          title=f"New chapter for {title} released",
