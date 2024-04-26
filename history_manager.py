@@ -30,7 +30,7 @@ def create_history_file():
         print(history_dict)
         json.dump(history_dict, f, ensure_ascii=False, indent=4, default=str)
 
-# TODO: Refactor - return in finally block eats errors
+
 def check_add_novel(retrieved_info):
     """
     Check history file to compare new novel data with old and notify about updates.
@@ -55,8 +55,7 @@ def check_add_novel(retrieved_info):
 
     except FileNotFoundError:
         notification_pusher.history_file_not_found_notification()
-    finally:
-        return updated
+    return updated
 
 
 def compare_data(old_novel_data, new_novel_data):
