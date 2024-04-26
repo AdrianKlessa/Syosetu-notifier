@@ -7,7 +7,6 @@ RES_DIRECTORY = RES_DIRECTORY / "res"
 APP_ID = "Syosetu notifier"
 
 novels_url = "https://ncode.syosetu.com/"
-# TODO: Change formatting so that the titles are AFTER "modified" / "new chapter" text (long LN titles smh)
 
 def new_chapter_notification(author, title, ncode):
     toast = Notification(app_id=APP_ID,

@@ -45,6 +45,7 @@ def main_update_loop():
         if history_manager.can_update_already():
             new_novel_info, success = api_client.get_novels_info_dict(config["followed_novels"])
             if success:
+                # First entry is the result count
                 novels_list = new_novel_info[1:]
                 for novel in novels_list:
                     updated = history_manager.check_add_novel(novel)
