@@ -11,7 +11,7 @@ novels_url = "https://ncode.syosetu.com/"
 
 def new_chapter_notification(author, title, ncode):
     toast = Notification(app_id=APP_ID,
-                         title=f"New chapter for {title} released",
+                         title=f"New chapter for: {title}",
                          msg=f"{author} has added a new chapter for {title}",
                          icon=str(RES_DIRECTORY.joinpath("bookmark-book.png").absolute()))
     toast.set_audio(audio.Default, loop=False)
@@ -23,7 +23,7 @@ def new_chapter_notification(author, title, ncode):
 
 def novel_modified_notification(author, title, ncode):
     toast = Notification(app_id=APP_ID,
-                         title=f"{title} was modified",
+                         title=f"Novel modified: {title}",
                          msg=f"{author} has made modifications to {title}",
                          icon=str(RES_DIRECTORY.joinpath("edit-pencil.png").absolute()))
     toast.set_audio(audio.Default, loop=False)
