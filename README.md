@@ -2,7 +2,7 @@ Shousetsuka ni Narou is a Japanese-language website where authors publically upl
 
 While the website has functionality for informing the user about novel updates, one has to log in and check their main user page to do so. There is no functionality for sending email notifications, or a webhook.
 
-This application is a lightweight python app that can run in the background and periodically check for updates of specified novels, notifying the user about new chapters being added and modifications to existing chapters (if enabled).
+This project is a lightweight python app that can run in the background and periodically check for updates of specified novels, notifying the user about new chapters being added and modifications to existing chapters (if enabled).
 
 The website's API is described here: https://dev.syosetu.com/man/api/
 
@@ -26,7 +26,7 @@ The website's API is described here: https://dev.syosetu.com/man/api/
    * `FollowedNovels` is the list of (comma-seperated) ncodes of novels you want to follow. These can be found by going to the home page of the novel you are interested in, and checking the url. It will look like `https://ncode.syosetu.com/nXXXXYY/`. The `nXXXXYY` is the ncode. The default config has example values for Overlord and Mitsuba Monogatari.
    * Examples of correct values: `n4402bd,n0388ee` or `n4402bd` or `n4402bd,n0388ee,n0432fz`
    * Set `NovelModifiedNotifications` to 1 if you want to be notified when an author made changes to a novel that are not new chapters (typo fixes, rewrites of previous chapters etc.)
-   * Set `SleepTime` to a higher/lower value if you want a different update schedule. For updates more frequent than every 30 minutes, check the notes section below.
+   * Set `SleepTime` to a higher/lower value (in seconds) if you want a different update schedule. For updates more frequent than every 30 minutes, check the notes section below.
 4. Run syosetu_notifier.pyw manually (every time you want it to be checking for updates, it will keep running in the background until you kill the process or shutdown your PC) or add it to autostart (described below).
 
 ### Adding to autostart
