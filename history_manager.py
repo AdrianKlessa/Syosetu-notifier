@@ -44,7 +44,6 @@ def check_add_novel(retrieved_info):
             history_data = json.load(f)
             if novel_id not in history_data:
                 history_data[novel_id] = retrieved_info
-                notification_pusher.novel_modified_notification(retrieved_info["writer"], retrieved_info["title"], novel_id)
             else:
                 old_novel_information = history_data[novel_id]
                 updated = compare_data(old_novel_information, retrieved_info)

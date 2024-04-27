@@ -27,7 +27,7 @@ The website's API is described here: https://dev.syosetu.com/man/api/
    * Examples of correct values: `n4402bd,n0388ee` or `n4402bd` or `n4402bd,n0388ee,n0432fz`
    * Set `NovelModifiedNotifications` to 1 if you want to be notified when an author made changes to a novel that are not new chapters (typo fixes, rewrites of previous chapters etc.)
    * Set `SleepTime` to a higher/lower value if you want a different update schedule. For updates more frequent than every 30 minutes, check the notes section below.
-4. During the first startup the app will create its history file (used for comparing new info from the API) and notify you that there were novel updates (since the history file is empty at this point and any data received is new).
+4. Run syosetu_notifier.pyw manually (every time you want it to be checking for updates, it will keep running in the background until you kill the process or shutdown your PC) or add it to autostart (described below).
 
 ### Adding to autostart
 1. Make a shortcut to `syosetu_notifier.pyw`
