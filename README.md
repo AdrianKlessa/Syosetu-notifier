@@ -1,3 +1,7 @@
+#### Get notifications for novel updates on Syosetu
+
+![notifications_example_screenshot](docs/notification_example.png)
+
 Shousetsuka ni Narou is a Japanese-language website where authors publically upload their works. Many of the works originating from this website have later been published as physical books and then adapted into anime.
 
 While the website has functionality for informing the user about novel updates, one has to log in and check their main user page to do so. There is no functionality for sending email notifications, or a webhook.
@@ -5,10 +9,6 @@ While the website has functionality for informing the user about novel updates, 
 This project is a lightweight python app that can run in the background and periodically check for updates of specified novels, notifying the user about new chapters being added and modifications to existing chapters (if enabled).
 
 The website's API is described here: https://dev.syosetu.com/man/api/
-
-### Notifications example:
-
-![notifications_example_screenshot](docs/notification_example.png)
 
 ### Requirements (tested version in parenthesis)
 
